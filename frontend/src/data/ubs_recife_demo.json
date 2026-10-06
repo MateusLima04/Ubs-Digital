@@ -1,0 +1,11 @@
+[
+  {"id":1,"nome":"USF Boa Viagem I","endereco":"Rua Barão de Souza Leão, 620","bairro":"Boa Viagem","cep":"51030-300","telefone":"(81) 3355-0101","horario_funcionamento":"Segunda a sexta, 7h às 17h","latitude":-8.1192,"longitude":-34.9011,"ativa":true},
+  {"id":2,"nome":"USF Casa Amarela","endereco":"Rua Padre Lemos, 340","bairro":"Casa Amarela","cep":"52070-200","telefone":"(81) 3355-0102","horario_funcionamento":"Segunda a sexta, 8h às 17h","latitude":-8.0264,"longitude":-34.9179,"ativa":true},
+  {"id":3,"nome":"USF Várzea","endereco":"Rua Francisco Lacerda, 112","bairro":"Várzea","cep":"50740-240","telefone":"(81) 3355-0103","horario_funcionamento":"Segunda a sexta, 7h às 16h","latitude":-8.0454,"longitude":-34.9588,"ativa":true},
+  {"id":4,"nome":"USF Ibura","endereco":"Avenida Dois Rios, 1500","bairro":"Ibura","cep":"51230-000","telefone":"(81) 3355-0104","horario_funcionamento":"Segunda a sexta, 7h às 17h","latitude":-8.1172,"longitude":-34.9375,"ativa":true},
+  {"id":5,"nome":"USF Afogados","endereco":"Rua São Miguel, 420","bairro":"Afogados","cep":"50770-720","telefone":"(81) 3355-0105","horario_funcionamento":"Segunda a sexta, 8h às 17h","latitude":-8.0749,"longitude":-34.9119,"ativa":true},
+  {"id":6,"nome":"USF Santo Amaro","endereco":"Rua da Aurora, 1190","bairro":"Santo Amaro","cep":"50040-090","telefone":"(81) 3355-0106","horario_funcionamento":"Segunda a sexta, 7h às 16h","latitude":-8.0471,"longitude":-34.8811,"ativa":true},
+  {"id":7,"nome":"USF Pina","endereco":"Rua Herculano Bandeira, 340","bairro":"Pina","cep":"51110-130","telefone":"(81) 3355-0107","horario_funcionamento":"Segunda a sexta, 8h às 17h","latitude":-8.0859,"longitude":-34.8856,"ativa":true},
+  {"id":8,"nome":"USF Encruzilhada","endereco":"Rua do Futuro, 520","bairro":"Encruzilhada","cep":"52050-010","telefone":"(81) 3355-0108","horario_funcionamento":"Segunda a sexta, 7h às 17h","latitude":-8.0356,"longitude":-34.8934,"ativa":true},
+  {"id":9,"nome":"USF Dois Irmãos","endereco":"Avenida Dois Irmãos, 780","bairro":"Dois Irmãos","cep":"52171-010","telefone":"(81) 3355-0109","horario_funcionamento":"Segunda a sexta, 8h às 16h","latitude":-8.0084,"longitude":-34.9415,"ativa":true}
+]

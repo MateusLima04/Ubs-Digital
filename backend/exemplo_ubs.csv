@@ -1,0 +1,2 @@
+nome,endereco,bairro,cep,telefone,horario_funcionamento,latitude,longitude,ativa
+USF Exemplo,Rua Ilustrativa 100,Boa Viagem,51000-000,(81) 0000-0000,"Segunda a sexta, 8h às 17h",-8.1192,-34.9011,true
