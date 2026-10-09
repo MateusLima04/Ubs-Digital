@@ -14,5 +14,10 @@ export function useGeolocation() {
       setLoading(false)
     }, { enableHighAccuracy: false, timeout: 12000, maximumAge: 60000 })
   }
-  return { location, error, loading, locate }
+  function reset() {
+    setLocation(null)
+    setError('')
+    setLoading(false)
+  }
+  return { location, error, loading, locate, reset }
 }

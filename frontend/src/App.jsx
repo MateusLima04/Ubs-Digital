@@ -28,7 +28,7 @@ export default function App() {
   const [dataError, setDataError] = useState('')
   const [filters, setFilters] = useState(initialFilters)
   const [selected, setSelected] = useState(null)
-  const { location, error: locationError, loading: locating, locate } = useGeolocation()
+  const { location, error: locationError, loading: locating, locate, reset: resetLocation } = useGeolocation()
 
   useEffect(() => {
     listUBS().then(setUnidades).catch(error => setDataError(error.message))
@@ -62,6 +62,18 @@ export default function App() {
     setFilters(initialFilters)
   }
 
+  function logout() {
+    try { localStorage.removeItem(NAME_KEY) } catch {}
+    setName('')
+    setDraftName('')
+    setSelected(null)
+    setFilters(initialFilters)
+    setMobileView('map')
+    resetLocation()
+    setPage('welcome')
+    window.scrollTo?.({ top: 0 })
+  }
+
   return <>
     <InstallPrompt />
     {page === 'welcome' && <WelcomeScreen onStart={() => setPage('name')} onGuest={() => enter('')} />}
@@ -83,6 +95,7 @@ export default function App() {
       onSelect={setSelected}
       mobileView={mobileView}
       onSwitchView={switchView}
+      onLogout={logout}
     />}
     {selected && <UBSDetailsModal unidade={selected} onClose={() => setSelected(null)} />}
   </>

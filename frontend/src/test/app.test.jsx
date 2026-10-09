@@ -56,6 +56,10 @@ describe('modo demonstração', () => {
     expect(await screen.findByRole('heading', { name: /Olá, Ana/ })).toBeTruthy()
     expect(localStorage.getItem('ubs-digital-name')).toBe('Ana')
     expect(localStorage.length).toBe(1)
+    fireEvent.click(screen.getByRole('button', { name: 'Menu do usuário Ana' }))
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Sair' }))
+    expect(localStorage.getItem('ubs-digital-name')).toBeNull()
+    expect(screen.getByText('Entrar como visitante')).toBeTruthy()
   })
   it('explica permissão de localização negada', async () => {
     Object.defineProperty(navigator, 'geolocation', { configurable: true, value: { getCurrentPosition: (_success, error) => error({ code: 1 }) } })

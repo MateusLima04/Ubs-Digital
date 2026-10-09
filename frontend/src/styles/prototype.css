@@ -26,7 +26,15 @@
 .details-symbol{width:19px;height:19px;display:grid;place-items:center;border:1.5px solid #0172b2;border-radius:50%;font-size:13px;font-weight:800;flex:none}
 .details-list strong{line-height:1.5}
 .install-banner{z-index:2500}
-.app-footer a{color:#d8f0fb;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+.user-menu{position:relative}
+.user-menu-trigger{display:flex;align-items:center;gap:9px;border:0;background:transparent;color:#001645;padding:5px 7px;border-radius:10px;font-weight:700}
+.user-menu-trigger:hover,.user-menu-trigger[aria-expanded="true"]{background:#edf6fa}
+.user-menu-chevron{color:#6f8494;transition:transform .18s ease}
+.user-menu-chevron.open{transform:rotate(180deg)}
+.user-menu-panel{position:absolute;right:0;top:calc(100% + 9px);z-index:1400;width:210px;background:#fff;border:1px solid #dfeaf1;border-radius:13px;padding:9px;box-shadow:0 14px 35px #001a3830}
+.user-menu-label{display:block;padding:7px 9px 9px;color:#8293a1;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.user-menu-panel button{width:100%;display:flex;align-items:center;gap:9px;border:0;background:transparent;color:#b33b3b;padding:10px;border-radius:8px;font-size:12px;font-weight:800;text-align:left}
+.user-menu-panel button:hover{background:#fff0f0}
 @media(max-width:1000px){.search-row{flex-wrap:wrap}.street-field{flex:1;max-width:none}.search-field{flex-basis:48%}}
 @media(max-width:760px){
   .prototype-welcome .welcome-left{min-height:100svh;align-items:center;text-align:center;padding:24px 24px 35px}

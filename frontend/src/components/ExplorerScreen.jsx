@@ -3,6 +3,7 @@ import { ArrowRight, Compass, Cross, LocateFixed, MapPin, Navigation, Search, Sl
 import Brand from './Brand'
 import DemoModeBadge from './DemoModeBadge'
 import UBSCard from './UBSCard'
+import UserMenu from './UserMenu'
 
 const MapView = lazy(() => import('./MapView'))
 
@@ -29,6 +30,7 @@ export default function ExplorerScreen({
   onSelect,
   mobileView,
   onSwitchView,
+  onLogout,
 }) {
   const { query, bairro, street, specialty } = filters
   const activeFilters = [query, bairro, street, specialty].filter(Boolean)
@@ -40,7 +42,7 @@ export default function ExplorerScreen({
         <a href="#mapa" onClick={() => onSwitchView('map')}><Compass size={17} /> Explorar</a>
         <a href="#unidades" onClick={() => onSwitchView('search')}>Unidades</a>
       </nav>
-      <div className="header-right"><DemoModeBadge /><span className="avatar" aria-hidden="true">{(name || 'V').charAt(0).toUpperCase()}</span><span className="header-name">{name || 'Visitante'}</span></div>
+      <div className="header-right"><DemoModeBadge /><UserMenu name={name} onLogout={onLogout} /></div>
     </div></header>
 
     <main>
@@ -84,7 +86,7 @@ export default function ExplorerScreen({
       </section>
     </main>
 
-    <footer className="app-footer"><Brand /><p>Uma forma simples de encontrar cuidado perto de você.</p><span>Dados do CSV fornecido · Confirme antes de visitar</span><a href="/admin/" target="_blank" rel="noopener noreferrer">Admin</a></footer>
+    <footer className="app-footer"><Brand /><p>Uma forma simples de encontrar cuidado perto de você.</p><span>Dados do CSV fornecido · Confirme antes de visitar</span></footer>
     <nav className="bottom-nav" aria-label="Navegação móvel">
       <button className={mobileView === 'map' ? 'active' : ''} onClick={() => onSwitchView('map')}><Compass size={20} /> Início</button>
       <button className={mobileView === 'search' ? 'active' : ''} onClick={() => onSwitchView('search')}><Search size={20} /> Busca</button>
