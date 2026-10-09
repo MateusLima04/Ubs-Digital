@@ -43,7 +43,6 @@ def main():
         )
 
     first_run = not DATABASE.exists()
-    admin_password = os.getenv('UBS_ADMIN_PASSWORD', 'admin123')
     django.setup()
 
     if os.getenv('RUN_MAIN') != 'true':
@@ -53,13 +52,8 @@ def main():
         if first_run:
             print('Importando as unidades de saúde...')
             call_command('importar_ubs', str(CSV_SOURCE), verbosity=0)
-            call_command('criar_admin_local', password=admin_password, verbosity=0)
 
         print('UBS Digital disponível em http://127.0.0.1:8000')
-        if first_run:
-            print(f'Admin: http://127.0.0.1:8000/admin/ — usuário Admin, senha {admin_password}')
-        else:
-            print('Admin: http://127.0.0.1:8000/admin/')
     execute_from_command_line([sys.argv[0], 'runserver', '0.0.0.0:8000'])
 
 

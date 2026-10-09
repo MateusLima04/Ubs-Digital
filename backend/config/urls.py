@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.http import FileResponse, Http404
 from django.urls import path, re_path
 from django.conf import settings
@@ -19,7 +18,7 @@ def frontend_asset(request, asset):
     return FileResponse(file.open('rb'), content_type=mimetypes.guess_type(file.name)[0] or 'application/octet-stream')
 
 urlpatterns = [
-    path('admin/', admin.site.urls), path('api/ubs/', list_ubs),
+    path('api/ubs/', list_ubs),
     re_path(r'^(?P<asset>assets/[^?]+|icons/[^?]+|manifest\.webmanifest|sw\.js)$', frontend_asset),
     path('', frontend),
 ]
