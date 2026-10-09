@@ -1,6 +1,8 @@
 from decimal import Decimal
+from pathlib import Path
+from django.conf import settings
+from django.core.management import call_command
 from django.test import TestCase
-from django.urls import reverse
 from .models import UBS
 
 class UBSTests(TestCase):
@@ -18,3 +20,13 @@ class UBSTests(TestCase):
 
     def test_api_rejects_post(self):
         self.assertEqual(self.client.post('/api/ubs/').status_code, 405)
+
+    def test_imports_original_csv_idempotently(self):
+        source = Path(settings.BASE_DIR) / 'data' / 'ubs_recife.csv'
+        call_command('importar_ubs', str(source), verbosity=0)
+        self.assertEqual(UBS.objects.exclude(cnes='').count(), 22)
+        call_command('importar_ubs', str(source), verbosity=0)
+        self.assertEqual(UBS.objects.exclude(cnes='').count(), 22)
+        unit = UBS.objects.get(cnes='0002143')
+        self.assertIn('César', unit.nome)
+        self.assertEqual(unit.cep, '')

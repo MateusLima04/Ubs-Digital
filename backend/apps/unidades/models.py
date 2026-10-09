@@ -1,12 +1,16 @@
 from django.db import models
 
 class UBS(models.Model):
+    cnes = models.CharField(max_length=16, blank=True, db_index=True)
     nome = models.CharField(max_length=180)
     endereco = models.CharField(max_length=255)
     bairro = models.CharField(max_length=120)
     cep = models.CharField(max_length=9)
     telefone = models.CharField(max_length=30, blank=True)
     horario_funcionamento = models.CharField(max_length=160, blank=True)
+    especialidade = models.TextField(blank=True)
+    como_usar = models.TextField(blank=True)
+    rpa = models.CharField(max_length=10, blank=True)
     latitude = models.DecimalField(max_digits=10, decimal_places=7)
     longitude = models.DecimalField(max_digits=10, decimal_places=7)
     ativa = models.BooleanField(default=True)

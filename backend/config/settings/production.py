@@ -3,8 +3,9 @@ from django.core.exceptions import ImproperlyConfigured
 from .base import *
 
 DEBUG = False
-if SECRET_KEY == 'dev-only-unsafe-change-in-production' or not os.getenv('DATABASE_URL'):
-    raise ImproperlyConfigured('Configure DJANGO_SECRET_KEY e DATABASE_URL em produção.')
+if SECRET_KEY == 'dev-only-unsafe-change-in-production':
+    raise ImproperlyConfigured('Configure DJANGO_SECRET_KEY em produção.')
+MIDDLEWARE.insert(1, 'whitenoise.middleware.WhiteNoiseMiddleware')
 SECURE_SSL_REDIRECT = os.getenv('DJANGO_SECURE_SSL_REDIRECT', 'true').lower() == 'true'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SECURE = True
