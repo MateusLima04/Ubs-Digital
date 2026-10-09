@@ -1,0 +1,75 @@
+/* Integra a linguagem visual do protótipo às telas responsivas. */
+.prototype-welcome .welcome-left{background:linear-gradient(155deg,#0879b8 0%,#005082 48%,#001645 100%)}
+.prototype-welcome .welcome-right{background:#eaf6fc}
+.welcome-illustration{width:min(76%,480px);text-align:center;filter:drop-shadow(0 24px 36px #001d3d24)}
+.welcome-illustration svg{display:block;width:100%;height:auto}
+.welcome-illustration span{display:block;color:#0872ab;font-weight:800;font-size:20px;letter-spacing:-.04em;margin-top:18px}
+.prototype-name .name-visual{background:#eaf6fc;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:32px;color:#0172b2}
+.prototype-name .name-visual:before,.prototype-name .name-visual:after{display:none}
+.prototype-name .name-visual svg{width:100%;max-width:390px;height:auto;position:relative;z-index:1;box-shadow:0 14px 34px #0b578020;border-radius:18px}
+.prototype-name .name-visual span{font-size:18px;font-weight:800;position:relative;z-index:1;text-align:center}
+.prototype-filter-heading{display:flex;align-items:center;gap:7px;color:#005987;font-size:12px;font-weight:800;margin:19px 0 10px}
+.care-options{display:flex;flex-wrap:wrap;gap:8px}
+.care-options button{border:1px solid #cfe3ee;background:#f4f9fc;color:#285a75;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:700}
+.care-options button.active{background:#0172b2;border-color:#0172b2;color:#fff}
+.street-field{height:49px;border:1px solid #dae4ec;border-radius:9px;background:#f8fafc;min-width:155px;max-width:180px;display:flex;align-items:center}
+.street-field input{min-width:0;width:100%;border:0;outline:none;background:transparent;padding:0 12px;color:#001645;font-size:13px}
+.search-status{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:-5px 0 18px;color:#718397;font-size:12px}
+.search-status strong{color:#0172b2;font-family:Manrope,sans-serif;font-size:14px}
+.search-status button{display:inline-flex;align-items:center;gap:5px;border:0;border-radius:8px;background:#edf6fa;color:#17678d;padding:7px 10px;font-size:11px;font-weight:800}
+.search-status button:hover{background:#dceef5}
+.mobile-map-top,.mobile-results-button{display:none}
+.map-caption{flex-wrap:wrap;gap:6px 14px}
+.map-caption a{text-decoration:underline;text-underline-offset:2px}
+.map-loading{display:grid;place-items:center;color:#527084;font-size:13px;font-weight:700}
+.details-illustration{display:block;width:100%;height:auto;max-height:160px;object-fit:cover;border-radius:13px;margin-bottom:21px}
+.details-symbol{width:19px;height:19px;display:grid;place-items:center;border:1.5px solid #0172b2;border-radius:50%;font-size:13px;font-weight:800;flex:none}
+.details-list strong{line-height:1.5}
+.install-banner{z-index:2500}
+.app-footer a{color:#d8f0fb;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+@media(max-width:1000px){.search-row{flex-wrap:wrap}.street-field{flex:1;max-width:none}.search-field{flex-basis:48%}}
+@media(max-width:760px){
+  .prototype-welcome .welcome-left{min-height:100svh;align-items:center;text-align:center;padding:24px 24px 35px}
+  .prototype-welcome .welcome-left header{width:100%}
+  .prototype-welcome .welcome-content{margin:auto 0;padding:45px 0}
+  .prototype-welcome .welcome-content h1{font-size:clamp(39px,10vw,56px);line-height:1.15;margin:22px 0}
+  .prototype-welcome .welcome-content p{max-width:390px;margin:0 auto;font-size:15px}
+  .prototype-welcome .welcome-actions{justify-content:center;gap:8px;margin-top:30px}
+  .prototype-welcome .welcome-trust{justify-content:center;margin-top:35px}
+  .prototype-name .name-layout{margin:18px auto 40px;gap:24px}
+  .prototype-name .name-visual{height:225px;border-radius:18px;padding:17px;gap:7px}
+  .prototype-name .name-visual svg{width:220px;max-height:166px;box-shadow:none}
+  .prototype-name .name-visual span{font-size:13px}
+  .prototype-name .name-form h1{font-size:35px;margin:9px 0}
+  .prototype-name .name-form>p{font-size:13px;line-height:1.6}
+  .prototype-name .name-form form{margin-top:20px}
+  .dashboard-intro{background:linear-gradient(155deg,#0172b2,#003c72);color:#fff;padding-top:30px;padding-bottom:44px}
+  .dashboard-intro .eyebrow{color:#a8e1fa}
+  .dashboard-intro h1{font-size:29px;margin:8px 0}
+  .dashboard-intro p{color:#d4ecf8;font-size:13px}
+  .explorer{margin-top:-20px;position:relative;z-index:2;border-radius:20px 20px 0 0;box-shadow:0 -4px 18px #00284a18}
+  .explorer-header h2{font-size:19px}
+  .care-options button{font-size:11px;padding:7px 10px}
+  .search-row{margin-top:17px}
+  .search-status{margin:0 0 14px}
+  .search-field{flex-basis:100%}
+  .select-field,.street-field{flex:1 1 45%;min-width:0;max-width:none}
+  .location-button{flex-basis:100%;min-height:46px}
+  .mobile-map-top{display:flex;flex-direction:column;gap:4px;color:#0065a0;margin:15px 0 10px}
+  .mobile-map-top span{font-size:12px;font-weight:700}
+  .mobile-map-top strong{font-size:14px}
+  .mobile-results-button{display:flex;width:100%;justify-content:center;align-items:center;gap:8px;border:0;background:linear-gradient(90deg,#0172b2,#004578);color:white;border-radius:12px;min-height:46px;margin:13px 0 2px;font-weight:800;font-size:13px}
+  .view-map .units-section{display:none}
+  .view-search .map-frame,.view-search .map-caption,.view-search .mobile-map-top,.view-search .mobile-results-button{display:none}
+  .view-search .units-section{padding-top:26px}
+  .view-search .dashboard-intro{padding-bottom:43px}
+  .view-search .explorer{padding-bottom:17px}
+  .bottom-nav{background:#def1fa;border-top:1px solid #b8dff0}
+  .bottom-nav button.active{color:#0172b2}
+  .bottom-nav button{flex:1}
+  .install-banner{bottom:76px;right:18px;left:18px;justify-content:center}
+  .details-modal{max-height:100svh;min-height:100svh;width:100%;border-radius:0;padding:20px 23px 90px}
+  .modal-backdrop{padding:0}
+  .details-illustration{max-height:190px;margin:-20px -23px 21px;width:calc(100% + 46px);border-radius:0}
+  .details-modal h2{font-size:24px}
+}

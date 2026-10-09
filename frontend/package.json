@@ -1,8 +1,12 @@
 {
   "name": "ubs-digital-frontend",
   "version": "1.0.0",
+  "description": "Frontend responsivo do UBS Digital para localizar unidades de saúde no Recife.",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
@@ -10,8 +14,10 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@maplibre/maplibre-gl-leaflet": "^0.1.4",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.468.0",
+    "maplibre-gl": "^6.12.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

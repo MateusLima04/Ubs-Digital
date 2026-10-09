@@ -3,6 +3,7 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import App from '../App'
 import { distanceKm } from '../utils/distance'
 import { filterAndSortUBS } from '../hooks/useUBSSearch'
+import { formatUnitName } from '../utils/unitName'
 import { listUBS, isDemoMode } from '../services/ubsService'
 import * as demo from '../services/ubsDemoService'
 import * as api from '../services/ubsApiService'
@@ -15,18 +16,18 @@ describe('modo demonstração', () => {
     expect(isDemoMode).toBe(true)
     const demoSpy = vi.spyOn(demo, 'listUBS')
     const apiSpy = vi.spyOn(api, 'listUBS')
-    expect((await listUBS()).length).toBeGreaterThanOrEqual(8)
+    expect((await listUBS()).length).toBe(22)
     expect(demoSpy).toHaveBeenCalledOnce()
     expect(apiSpy).not.toHaveBeenCalled()
   })
   it('busca na API quando o modo demonstração está desligado', async () => {
     vi.stubEnv('VITE_DEMO_MODE', 'false')
     vi.resetModules()
-    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => [{ id: 42, nome: 'UBS da API' }] })
+    const fetchMock = vi.fn().mockResolvedValue({ ok: true, json: async () => [{ id: 42, nome: 'US 103 CS Prof Mário Ramos' }] })
     vi.stubGlobal('fetch', fetchMock)
     const service = await import('../services/ubsService.js')
     expect(service.isDemoMode).toBe(false)
-    expect(await service.listUBS()).toEqual([{ id: 42, nome: 'UBS da API' }])
+    expect(await service.listUBS()).toEqual([{ id: 42, nome: 'Prof Mário Ramos', nome_oficial: 'US 103 CS Prof Mário Ramos' }])
     expect(fetchMock).toHaveBeenCalledWith('/api/ubs/')
     vi.unstubAllEnvs()
     vi.unstubAllGlobals()
@@ -34,21 +35,25 @@ describe('modo demonstração', () => {
   it('mostra entrada, visitante, busca e detalhes', async () => {
     render(<App />)
     fireEvent.click(screen.getByText('Entrar como visitante'))
-    expect(await screen.findByText(/Olá, visitante/)).toBeTruthy()
+    expect(await screen.findByRole('heading', { name: /Olá, visitante/ })).toBeTruthy()
     expect(screen.getByTestId('map-view')).toBeTruthy()
-    fireEvent.change(screen.getByLabelText('Buscar por nome, bairro ou endereço'), { target: { value: 'Várzea' } })
+    fireEvent.change(screen.getByLabelText('Buscar por nome, bairro ou endereço'), { target: { value: 'Beberibe' } })
     expect(screen.getByText('1 resultado')).toBeTruthy()
-    fireEvent.click(screen.getByLabelText('Ver detalhes de USF Várzea'))
+    fireEvent.click(screen.getByRole('button', { name: /Limpar filtros/ }))
+    expect(screen.getByText('22 resultados')).toBeTruthy()
+    fireEvent.click(screen.getByLabelText('Ver detalhes de Prof Monteiro de Morais'))
     expect(screen.getByRole('dialog')).toBeTruthy()
-    expect(screen.getByText('50740-240')).toBeTruthy()
+    expect(screen.getByText(/GINECOLOGIA, PEDIATRIA/)).toBeTruthy()
+    expect(screen.queryByText('CEP')).toBeNull()
+    expect(screen.queryByText('COMO ACESSAR')).toBeNull()
     expect(screen.getByRole('link', { name: /Ver rota/ }).getAttribute('href')).toContain('google.com/maps/dir')
   })
   it('salva somente o nome e usa a saudação personalizada', async () => {
     render(<App />)
     fireEvent.click(screen.getByText('Começar agora'))
-    fireEvent.change(screen.getByLabelText('Seu primeiro nome'), { target: { value: 'Ana' } })
+    fireEvent.change(screen.getByLabelText('Qual o seu nome?'), { target: { value: 'Ana' } })
     fireEvent.click(screen.getByText('Continuar'))
-    expect(await screen.findByText(/Olá, Ana/)).toBeTruthy()
+    expect(await screen.findByRole('heading', { name: /Olá, Ana/ })).toBeTruthy()
     expect(localStorage.getItem('ubs-digital-name')).toBe('Ana')
     expect(localStorage.length).toBe(1)
   })
@@ -72,5 +77,14 @@ describe('busca e distância', () => {
     expect(filterAndSortUBS(units, 'varzea', null).map(item => item.id)).toEqual([2])
     expect(filterAndSortUBS(units, '', units[1]).map(item => item.id)).toEqual([2, 1])
     expect(filterAndSortUBS(units, '', null, 'Pina').map(item => item.id)).toEqual([1])
+  })
+  it('filtra por rua e atendimento do CSV', () => {
+    const rows = [{ ...units[0], especialidade: 'CLÍNICA MÉDICA' }, { ...units[1], especialidade: 'PEDIATRIA' }]
+    expect(filterAndSortUBS(rows, '', null, '', { street: 'rua b', specialty: 'pediatria' }).map(item => item.id)).toEqual([2])
+  })
+  it('remove o código institucional do nome exibido e preserva nomes sem código', () => {
+    expect(formatUnitName('US 103 CS Prof Mário Ramos')).toBe('Prof Mário Ramos')
+    expect(formatUnitName('US 158 Pam Ceasa')).toBe('Pam Ceasa')
+    expect(formatUnitName('UBS da API')).toBe('UBS da API')
   })
 })

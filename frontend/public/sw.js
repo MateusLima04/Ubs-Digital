@@ -1,4 +1,4 @@
-const CACHE = 'ubs-digital-shell-v1'
+const CACHE = 'ubs-digital-shell-v4'
 const SHELL = ['/', '/manifest.webmanifest', '/icons/icon.svg', '/icons/icon-maskable.svg', '/icons/icon-192.png', '/icons/icon-512.png']
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()))
