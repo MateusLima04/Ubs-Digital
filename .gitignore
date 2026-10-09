@@ -2,9 +2,15 @@ node_modules/
 .npm-cache/
 dist/
 .env
+.env.local
 .venv/
 __pycache__/
 *.pyc
 *.sqlite3
+staticfiles/
 coverage/
 .pytest_cache/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
